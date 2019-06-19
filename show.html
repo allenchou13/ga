@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row m-5">
+            <div class="col">
+                <div class="list-group exam-list">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Launch demo modal
+                </button>
+            </div>
+        </div> -->
+        <div class="row mb-5">
+            <div class="col questions-container">
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-jiexi" id="modal-jiexi" tabindex="-1" role="dialog" aria-labelledby="modal-jiexi-lable"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-jiexi-lable">解析</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-jiexi-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-wrong-anwser" id="modal-wrong-anwser" tabindex="-1" role="dialog" aria-labelledby="modal-wrong-anwser-lable"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-wrong-anwser-lable">提示</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    答案错误
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var exams = []
+        var currentExam = ''
+        var question_list = []
+        var answer_list = []
+
+        $(document).on('click', '.btn-back', function () {
+            updateExams();
+        });
+
+        function updateExams() {
+            $.getJSON('./exams').done(rlt => {
+                exams = rlt;
+                updateExamsShow();
+            })
+
+        }
+
+        function updateExamsShow() {
+            var exam_list_ele = $('.exam-list');
+            exam_list_ele.empty()
+            for (var i = 0; i < exams.length; i++) {
+                $(`<button class="btn-exam list-group-item list-group-item-action" data-name="${exams[i]}">
+                    ${exams[i]}
+                </button>`).appendTo(exam_list_ele);
+            }
+        }
+
+        $(document).on('click', '.btn-exam', function () {
+            currentExam = $(this).data('name');
+            updateQuestions();
+        });
+
+        function updateQuestions() {
+            $.getJSON('/exams/' + currentExam).done(function (rlt) {
+                question_list = rlt;
+                updateQuestionsShow();
+            })
+        }
+
+        function updateQuestionsShow() {
+            $('.questions-container').empty();
+            for (var i = 0; i < question_list.length; i++) {
+                item = question_list[i];
+                var row = $(`
+                        <div class="row m-5">
+                            <div class="col">
+                                <p>${item[0]} ${item[1].replace('\n', '<br/>')}</p>
+                                
+                            </div>
+                        </div>`);
+
+                function sel(num, sel, content) {
+                    return `<div class="form-check">
+                            <input class="form-check-input answer" type="radio" name="answer_${num}" id="answer_${num}_${sel}" value="${sel}">
+                            <label class="form-check-label" for="answer_${num}_${sel}">
+                                ${content}
+                            </label>
+                        </div>`
+                }
+
+                row.children('.col').append(sel(i, 'a', item[2]));
+                row.children('.col').append(sel(i, 'b', item[3]));
+                row.children('.col').append(sel(i, 'c', item[4]));
+                row.children('.col').append(sel(i, 'd', item[5]));
+                row.children('.col').append(`
+                        <button class="btn btn-light btn-jiexi" data-index="${i}">解析</button>
+                    `);
+                $('.questions-container').append(row);
+            }
+        }
+
+        $(document).on('change', 'input.answer', function () {
+            var name = $(this).attr('name');
+            var index = parseInt(name.split('_')[1])
+            ans = $(this).val()
+            answer_list[index] = ans
+            if (ans.toUpperCase() != question_list[index][6]) {
+                $('.modal-wrong-anwser').modal('toggle');
+            }
+        })
+
+        $(document).on('click', '.btn-jiexi', function () {
+            var i = $(this).data('index')
+            $('.modal-jiexi-body').text(question_list[i][8]);
+            $('.modal-jiexi').modal('toggle');
+        });
+
+        updateExams();
+    </script>
+</body>
+
+</html>

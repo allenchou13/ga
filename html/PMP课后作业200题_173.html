@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%; height:100%;">
+<head>
+    <meta charset="UTF-8">
+            <title>光环云课堂</title>
+        <link href="/static/home/css/style.css" rel="stylesheet">    <link rel="icon" href="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090401_83647_216x216.png" />
+    <script>
+        var cpmpany_id = "45";
+    </script>
+</head>
+<link href="/static/home/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.7.1/skins/default/aliplayer-min.css"/>
+<script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.7.1/aliplayer-flash-min.js"></script>
+
+<body style="background:#f2f2f2; ">
+<!--头部↓↓↓↓↓↓-->
+    <div class="fmy_head_wrap">
+    <div class="fmy_head_wrap_i">
+        <div class="fmy_head_logo_wrap">
+            <a href="/" target="_self">
+                <img src="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090302_47484_118x40.jpg" alt="">
+            </a>
+        </div>
+                    <ul class="fmy_nav_txt">
+                <a href="/" target="_self">
+                        <li class="">首页</li>
+                    </a>                <a href="/Lesson/index.html" target="_self">
+                    <li class="">课程中心</li>
+                </a>
+                <a href="/live/lists.html" target="_self">
+                    <li class="">直播中心</li>
+                </a>
+                <a></a>
+                                    <a href="/Lesson/weike.html" target="_self">
+                        <li class="">光环微课</li>
+                    </a>
+                                    <a href="/Tiku/index.html" target="_self">
+                        <li class="">题库</li>
+                    </a>
+                                    <a href="/Teacher/index.html" target="_self">
+                        <li class="">名师</li>
+                    </a>
+                                                        <a href="/Qa/index.html" target="_self">
+                        <li class="">问答</li>
+                    </a>
+                                </ul>        <div class="fmy_head_person" style="display:none;">
+            <span>登录</span>
+            <span>注册</span>
+        </div>
+                    <div class="fmy_right_right">
+                <a href="/User/myLessons.html">
+                    <div class="shopping_car" style="border: 1px solid #f25051;">
+                        <div class="shopping_car_img"><img style=" margin-top: 1px;" src="/static/home/images/myke.png" alt=""></div>
+                        <span style="color: #f25051;">我的课程</span>
+                    </div>
+                </a>
+            </div>        <div class="fmy_right_right">
+                            <a href="/Shop/cart.html" target="_self">
+                    <div class="shopping_car">
+                        <div class="shopping_car_img"><img src="/static/home/images/shopping.png" alt=""></div>
+                        <span>购物车</span>
+                        <div class="shopping_background" id="shopnums"></div>
+                    </div>
+                </a>        </div>
+
+        <div id="logged" class="fmy_head_person">
+                <div class="fmy_head_dled" id="avater">
+                    <img src="https://img01.feimayun.com/wx/manage/avater/2018/2018-09/20180926181000_95910_130x130.jpg" alt="">
+                </div>
+                <div class="fmy_head_name">周越</div>
+            </div>
+            
+        <ol class="fmy_head_menu" style="display:none;">
+            <a href="/User/myLessons.html" target="_self">
+                <li>我的课程</li>
+            </a>
+            <a href="/User/myNews.html" target="_self">
+                <li>我的消息<div class="shopping_background" style="margin-top: 5px;" id="newNums"></div></li>
+            </a>
+            <a href="/User/myInfo.html" target="_self">
+                <li>个人设置</li>
+            </a>
+                        <a href="/Login/loginOut.html">
+                <li>退出</li>
+            </a>
+        </ol>
+    </div>
+</div>
+<script src="/static/tools/js/jquery2.2.4.min.js"></script>
+<script>
+    $(function () {
+        $('#logged').mouseover(function () {
+            $('.fmy_head_menu').show();
+        });
+        $('#logged').mouseout(function () {
+            $('.fmy_head_menu').hide();
+        });
+        $('.fmy_head_menu').mouseover(function () {
+            $('.fmy_head_menu').show();
+        });
+        $('.fmy_head_menu').mouseout(function () {
+            $('.fmy_head_menu').hide();
+        });
+
+        var is_login = "55804";
+        //获取购物车数量
+        if (is_login) {
+            $.ajax({
+                url: " /Shop/shopNums.html",
+                type: 'post',
+                datatype: 'json',
+                success: function (data) {
+                    if (data.status == 1) {
+                        if (data.news != 0) {
+                            $('#newNums').empty().append(data.news);
+                        } else {
+                            $("#newNums").css("display", "none");
+                        }
+                        if (data.nums != 0) {
+                            $('#shopnums').empty().append(data.nums);
+                        } else {
+                            $("#shopnums").css("display", "none");
+                        }
+                    } else {
+                        $("#shopnums").css("display", "none");
+                        $("#newNums").css("display", "none");
+                    }
+                }
+            })
+        } else {
+            $("#shopnums").css("display", "none");
+            $("#newNums").css("display", "none");
+        }
+    })
+</script>
+
+<!--内容开始↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+<div class="stxq_mbx">
+    <ul>
+        <a href="/" target="_self">
+            <li>首页</li>
+        </a>
+        <a href="/Test/index/tid/155859.html" target="_self">
+            <li>试题详情</li>
+        </a>
+        <a href="#" target="_self">
+            <li class="current">答案解析</li>
+        </a>
+    </ul>
+</div>
+<div class="stxq_banner">
+    <h3>PMP课后作业200题</h3>
+    <ol class="jxxq_ts">
+        <li>总题数：200</li>
+        <li>答题数：200</li>
+        <li>正题：146</li>
+        <li>错题：54</li>
+        <li>未答：0</li>
+    </ol>
+    <ul>
+            </ul>
+</div>
+<div class="st_content">
+    <div class="st_content_left">
+        <!--单选开始↓↓↓↓↓↓↓↓↓↓-->
+        <div class="st_danxuan" id="radio_anchor">
+                <h4 class="st_content_tit">
+                    <div class="st_content_line"></div>
+                    <em>单选题</em>
+                    （每题<span>1</span>分，共<span>1</span>道题）
+                </h4>
+                <div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="23310">
+                            <span>173、</span>
+                            <em>[单选]</em>
+                            .项目发起人通知项目经理，最关键的项目标准是按时交付产品，客户对资源可用性没有 时间限制，哪个行动会减少时间表，但会增加风险?<br/>The project sponsor informs the project manager that the most critical project standard is to deliver the product on time. There is no time limit for the availability of resources. Which action will reduce the timetable but will add to the risk?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：A.添加团队成员<br/>To add team members                                    </li><li>
+                                        <input type="radio" checked> B：B.并行执行活动<br/>To execute activities in parallel                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：C.外包项目执行<br/>To outsource project execution                                    </li><li>
+                                                                                    <input type="radio" disabled> D：D.聘请高薪专家<br/>To hire high-salaried experts                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：参考答案：B
+解析：减少时间，即压缩进度。增加风险的进度压缩技术就是快速跟进，即B。                                                    </div>
+                    </div>            </div>        <!--单选结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--多选开始↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+                <!--多选结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--判断开始↓↓↓↓↓↓↓↓↓↓-->
+                <!--判断结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--填空开始↓↓↓↓↓↓↓↓↓↓-->
+                <!--填空结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--简答开始↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+                <!--简答结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+        <!--视频在此↓↓↓↓↓↓-->
+        <div class="video-box" style="display: none;">
+            <div class="kcbf_wrap_x_box_left_player_exam" id="j_player"></div>
+        </div>
+        <!--视频在此↑↑↑↑↑↑-->
+    </div>
+    <div class="st_content_right">
+        <div class="st_content_right_tit_jx">答题用时：144分钟
+            <br/>答题时间：2019-06-06 13:07:41        </div>
+        <div class="st_content_right_wrap">
+            <h5>答题卡</h5>
+            <div class="st_content_right_jindu">
+                    <h4><span></span><em>单选题</em></h4>
+                    <ol class="st_content_right_jindu_num">
+                        <a href="#23310">
+                                <li class="current">173</li>
+                            </a>                    </ol>
+                </div>        </div>
+        <div class="st_content_right_btn">
+            <a href="/Test/index/tid/155859.html"><input type="submit" value="返回列表" class="st_content_right_btn_red"></a>
+        </div>
+    </div>
+</div>
+<!--内容结束↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+
+<!--footer-->
+    <!--footer-->
+<div class="footer_warp">
+    <div class="footer">
+        <div class="footer_left">
+            <ul>
+                <li>咨询热线：400-0892-521</li>
+                <li>教务电话： 020-83514157</li>
+                <li>联系邮箱：ycjw@aura.cn </li>
+                <li>技术支持：185-1474-8683意见反馈</li>
+                <li>Copyright 2017 版权所有 光环国际</li>
+                <li>PMI, PMP and PMBOK are registered marks of the Project Management Institute</li>
+            </ul>
+        </div>
+            <div class="footer_right"><img src="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913091652_58404_195x65.png" alt=""></div>
+    </div>
+</div>
+<!--<div style="width: 100%;height: 120px;"></div>-->
+
+<script type="text/javascript" src="/static/tools/layer/layer.js"></script>
+<!-- jQuery -->
+<script>
+    $(function () {
+        var winHeight = $(window).height();
+        var navHeight = $('.fmy_head_wrap').height();
+        var courseHeight = $('.stxq_mbx').height();
+        var conHeight = $('.stxq_banner').height();
+        var footHeight = $('.footer_warp').height();
+        var pad = 150;
+        $('.st_content_left').css('min-height', winHeight - navHeight - courseHeight - conHeight - footHeight - 150 + 'px');
+
+        $('.typer').eq(0).addClass('current');
+        $('.stxq_banner ul li').click(function () {
+            $('.stxq_banner ul li').removeClass('current');
+            $(this).addClass('current');
+        });
+        $('.open1').click(function () {
+            $('.open1').toggleClass('close1');
+            $('.open2').toggleClass('close2');
+        })
+
+        //处理video
+        $('video').attr('controlslist', 'nodownload');
+        $('video').attr('poster', "https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090837_78838_288x152.jpg");
+        $('video').css('display', 'block');
+        $('video').css('margin', '0 auto');
+
+        //处理右击
+        $('body').attr('oncontextmenu', 'window.event.returnValue=false');
+    })
+
+    //屏幕滚动右侧板块固定
+    window.onscroll = function () {
+        var sc = $(document);
+        var leftOf = $('.st_content').offset().left;
+        var mbxHeight = $('.stxq_mbx').height();
+        var topNum = mbxHeight + 279;
+        if (sc.scrollTop() >= topNum) {  //当滚动距离大于250px时执行下面的东西
+            $('.st_content_right').css({
+                'position': 'fixed',
+                'top': 0,
+                'left': leftOf + 880,
+                'z-index': '9999'
+            });
+        } else {//当滚动距离小于250的时候执行下面的内容，也就是让导航栏恢复原状
+            $('.st_content_right').css({
+                'position': 'static',
+            });
+        }
+    }
+
+    //播放解析视频
+    function playVideo(aliVid) {
+        if (!aliVid) {
+            layer.msg('缺少参数，请刷新后重试~', {icon: 0, time: 1500});
+            return false;
+        }
+
+        $.ajax({
+            url: "/Test/ajaxGetPlayAuth.html",
+            data: {aliVid: aliVid},
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    $('.video-box').css('display', 'block');
+
+                    var html = "<div id = 'J_prismPlayer' style='width: 100%;height: 100%;' class='prism-player'></div>";
+                    html += "<img class='J_prismPlayer_t' src='/static/home/images/video_x.png' onclick='closeVideo()'>";
+                    $('#j_player').empty().append(html);
+
+                    var configs = {
+                        id: "J_prismPlayer",
+                        //autoplay: true,
+                        vid: aliVid,
+                        playauth: data.data,
+                    };
+
+                    var playerObj = new Aliplayer(configs, function (player) {});
+                } else {
+                    layer.msg(data.msg, {icon: 2, time: 1500});
+                    return false;
+                }
+            }
+        });
+    }
+    //关闭视频
+    function closeVideo() {
+        $('.video-box').css('display', 'none');
+        $('#J_prismPlayer').empty();
+    }
+</script>
+</body>
+</html>

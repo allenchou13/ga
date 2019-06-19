@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%; height:100%;">
+<head>
+    <meta charset="UTF-8">
+            <title>光环云课堂</title>
+        <link href="/static/home/css/style.css" rel="stylesheet">    <link rel="icon" href="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090401_83647_216x216.png" />
+    <script>
+        var cpmpany_id = "45";
+    </script>
+</head>
+<link href="/static/home/css/style.css" rel="stylesheet">
+<body style="background:#f2f2f2; ">
+<script src='/static/tools/js/jquery.min.js'></script>
+<script src="/static/tools/uedit1432/ueditor.config.js"></script>
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.7.1/skins/default/aliplayer-min.css"/>
+<script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.7.1/aliplayer-flash-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://player.alicdn.com/aliplayer/presentation/js/aliplayercomponents.min.js"></script>
+<!--头部↓↓↓↓↓↓-->
+    <div class="fmy_head_wrap">
+    <div class="fmy_head_wrap_i">
+        <div class="fmy_head_logo_wrap">
+            <a href="/" target="_self">
+                <img src="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090302_47484_118x40.jpg" alt="">
+            </a>
+        </div>
+                    <ul class="fmy_nav_txt">
+                <a href="/" target="_self">
+                        <li class="">首页</li>
+                    </a>                <a href="/Lesson/index.html" target="_self">
+                    <li class="">课程中心</li>
+                </a>
+                <a href="/live/lists.html" target="_self">
+                    <li class="">直播中心</li>
+                </a>
+                <a></a>
+                                    <a href="/Lesson/weike.html" target="_self">
+                        <li class="">光环微课</li>
+                    </a>
+                                    <a href="/Tiku/index.html" target="_self">
+                        <li class="">题库</li>
+                    </a>
+                                    <a href="/Teacher/index.html" target="_self">
+                        <li class="">名师</li>
+                    </a>
+                                                        <a href="/Qa/index.html" target="_self">
+                        <li class="">问答</li>
+                    </a>
+                                </ul>        <div class="fmy_head_person" style="display:none;">
+            <span>登录</span>
+            <span>注册</span>
+        </div>
+                    <div class="fmy_right_right">
+                <a href="/User/myLessons.html">
+                    <div class="shopping_car" style="border: 1px solid #f25051;">
+                        <div class="shopping_car_img"><img style=" margin-top: 1px;" src="/static/home/images/myke.png" alt=""></div>
+                        <span style="color: #f25051;">我的课程</span>
+                    </div>
+                </a>
+            </div>        <div class="fmy_right_right">
+                            <a href="/Shop/cart.html" target="_self">
+                    <div class="shopping_car">
+                        <div class="shopping_car_img"><img src="/static/home/images/shopping.png" alt=""></div>
+                        <span>购物车</span>
+                        <div class="shopping_background" id="shopnums"></div>
+                    </div>
+                </a>        </div>
+
+        <div id="logged" class="fmy_head_person">
+                <div class="fmy_head_dled" id="avater">
+                    <img src="https://img01.feimayun.com/wx/manage/avater/2018/2018-09/20180926181000_95910_130x130.jpg" alt="">
+                </div>
+                <div class="fmy_head_name">周越</div>
+            </div>
+            
+        <ol class="fmy_head_menu" style="display:none;">
+            <a href="/User/myLessons.html" target="_self">
+                <li>我的课程</li>
+            </a>
+            <a href="/User/myNews.html" target="_self">
+                <li>我的消息<div class="shopping_background" style="margin-top: 5px;" id="newNums"></div></li>
+            </a>
+            <a href="/User/myInfo.html" target="_self">
+                <li>个人设置</li>
+            </a>
+                        <a href="/Login/loginOut.html">
+                <li>退出</li>
+            </a>
+        </ol>
+    </div>
+</div>
+<script src="/static/tools/js/jquery2.2.4.min.js"></script>
+<script>
+    $(function () {
+        $('#logged').mouseover(function () {
+            $('.fmy_head_menu').show();
+        });
+        $('#logged').mouseout(function () {
+            $('.fmy_head_menu').hide();
+        });
+        $('.fmy_head_menu').mouseover(function () {
+            $('.fmy_head_menu').show();
+        });
+        $('.fmy_head_menu').mouseout(function () {
+            $('.fmy_head_menu').hide();
+        });
+
+        var is_login = "55804";
+        //获取购物车数量
+        if (is_login) {
+            $.ajax({
+                url: " /Shop/shopNums.html",
+                type: 'post',
+                datatype: 'json',
+                success: function (data) {
+                    if (data.status == 1) {
+                        if (data.news != 0) {
+                            $('#newNums').empty().append(data.news);
+                        } else {
+                            $("#newNums").css("display", "none");
+                        }
+                        if (data.nums != 0) {
+                            $('#shopnums').empty().append(data.nums);
+                        } else {
+                            $("#shopnums").css("display", "none");
+                        }
+                    } else {
+                        $("#shopnums").css("display", "none");
+                        $("#newNums").css("display", "none");
+                    }
+                }
+            })
+        } else {
+            $("#shopnums").css("display", "none");
+            $("#newNums").css("display", "none");
+        }
+    })
+</script>
+
+<!--内容开始↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+<div class="stxq_mbx">
+    <ul>
+        <a href="/" target="_self">
+            <li>首页</li>
+        </a>
+        <a href="/Test/index/tid/188436.html" target="_self">
+            <li>试题详情</li>
+        </a>
+        <a href="#">
+            <li class="current">答案解析</li>
+        </a>
+    </ul>
+</div>
+<div class="stxq_banner">
+    <h3>PMI-PMP®面授模考一</h3>
+    <ol class="jxxq_ts">
+        <li>总题数：200</li>
+        <li>答题数：200</li>
+        <li>正题：158</li>
+        <li>错题：42</li>
+        <li>未答：0</li>
+    </ol>
+    <ul>
+        <a href="#radio_anchor">
+                <li class="typer">单选题42道</li>
+            </a>    </ul>
+</div>
+<div class="st_content">
+    <div class="st_content_left">
+        <!--单选开始↓↓↓↓↓↓↓↓↓↓-->
+        <div class="st_danxuan" id="radio_anchor">
+                <h4 class="st_content_tit">
+                    <div class="st_content_line"></div>
+                    <em>单选题</em>
+                    （每题<span>1</span>分，共<span>42</span>道题）
+                </h4>
+
+                <div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27494">
+                            <span>1、</span>
+                            <em>[单选]</em>
+                            作为你们公司项目办公室的经理，你必须经常判定哪些项目应该得到额外的资源。你还要建议哪些项目应该启动、继续进行或取消。有利于你做出这些决策的一个方法是<br/>As manager of your organization’s project office, you often must decide which projects will receive additional resources. You also recommend which projects should <br/>be initiated, continued, or cancelled. One way to help you make these decisions is to<br/><br/>                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：为项目明确一个整体风险级别<br/>Determine an overall risk ranking for the project                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：评估定量风险分析结果的趋势<br/>Assess trends in quantitative risk analysis results                                    </li><li>
+                                                                                    <input type="radio" disabled> C：对各种风险和条件进行排序<br/>Prioritize risks and conditions                                    </li><li>
+                                                                                    <input type="radio" disabled> D：评估风险定性分析结果的趋势<br/>Assess trends in qualitative risk analysis results                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：PMBOK（6） 2.4.4.3PMO的职责。PMO的职责包括制定和管理项目政策、程序、模板和其他共享文件，PMO承担整个组织范围的职责，PM只负责单个项目。本题中为整体风险明确级别是PMO的职责，B/C/D是PM的职责，PMO经理可依据整体风险的级别建议哪些项目应启动、继续或取消。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27505">
+                            <span>12、</span>
+                            <em>[单选]</em>
+                            一家公司希望开始一个新的产品线。项目经理确定了下列活动。由于原材料短缺，活动D延期。在不造成项目延期的情况下，项目经理可以接受该活动延期多少天？<br/>A company wants to start a new product line. The following activities were identified by the project.
+Activity D was delayed due to the unavailability of a raw material. How many days of delay could the project manager absorb without delaying the project?<br/><img src="/ueditor_file/2019/2019-05/201905161817081783.png" title="201905161817081783.png" alt="图片1.png"/>                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：20 天<br/>20 days                                    </li><li>
+                                        <input type="radio" checked> B：10 天<br/>10 days                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：15 天<br/>                                    </li><li>
+                                                                                    <input type="radio" disabled> D：0 天<br/><br/>                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：PMBOK（6） 6.5.2.2关键路径法。 CP：A-B-E；TD：75次CP：A-C-D-E；TD：65；TF：10                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27507">
+                            <span>14、</span>
+                            <em>[单选]</em>
+                            一个管道施工项目的项目分包商提议升级管道材料质量，而这不会影响进度或成本，这项材料变更已获得批准，应使用下列哪一项来记录这项变更？<br/>A project Subcontractor for a pipeline construction project proposes to upgrade the quality of the piping material, which does not affect progress or costs, and this material change has been approved, which of the following should be used to record the change?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：成本管理计划<br/> Cost management plan                                    </li><li>
+                                                                                    <input type="radio" disabled> B：风险登记册<br/>Risk register                                    </li><li>
+                                                                                    <input type="radio" disabled> C：合同<br/>Contract                                    </li><li>
+                                        <input type="radio" checked> D：配置管理系统<br/>Configuration management system                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：按照变更控制流程，使用配置管理系统来记录已批准的变更请求，配置管理系统中包括变更控制系统，配置管理系统是整个项目管理系统的一个子系统。它由一系列正式的书面程序组成，用于对以下工作提供技术和管理方面的指导与监督：识别并记录产品、成果、服务或部件的功能特征和物理特征；控制对上述特征的任何变更；记录并报告每一项变更及其实施情况；支持对产品、成果或部件的审查，以确保其符合要求。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27512">
+                            <span>19、</span>
+                            <em>[单选]</em>
+                            一家玩具公司的项目团队希望将统计抽样应用到某些产品的检查流程中。随机抽取玩具样品进行检查。应在下列哪一个过程中确定抽样频率和规模？<br/>A project team for a toy company wants to reduce the costs by applying statistical sampling to the inspection process on some of the products. A sample of toys is randomly selected for inspection. During which of the following processes should the sample frequency and size be determined?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：收集需求<br/> Collect Requirements                                    </li><li>
+                                        <input type="radio" checked> B：规划质量管理<br/>Plan Quality Management                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：控制质量<br/>Control Quality                                    </li><li>
+                                                                                    <input type="radio" disabled> D：管理质量<br/>Perform Quality Assurance                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：参见PMBOK第6版8.3.2.1 数据收集 统计抽样。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27513">
+                            <span>20、</span>
+                            <em>[单选]</em>
+                            项目团队刚刚制定完成一个新的订单跟踪系统的开发。项目发起人销售总监对新系统非常满意。而生产总监对此不满，并要求重新设计该系统以满足生产需求。项目经理估计重新设计系统会导致项目实施延迟两个月。项目经理本应如何做就可以避免发生这种情况？<br/>A project team has just completed the development of a new order tracking system. The project sponsor, the director of sales, is pleased with the new system. However, the director of manufacturing is not pleased and has demanded that the system be re-designed to meet manufacturing concerns. The project manager estimates that a system redesign will delay implementation by two months.How could the project manager have avoided this situation?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：在编制计划阶段完成角色和职责矩阵<br/>Completed a roles and responsibility matrix in the planning phrase.                                    </li><li>
+                                        <input type="radio" checked> B：让项目相关方参与，确保要求不被忽略<br/>Involved key stakeholders to ensure that requirements were not overlooked.                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：确保让销售总监批准该需求<br/>Ensured that the director of sales had approved the requirements.                                    </li><li>
+                                                                                    <input type="radio" disabled> D：在编制项目计划阶段，制定有效的项目范围和变更控制流程<br/>Developed an effective project scope and change control process during project planning.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：在规划项目、制定项目管理计划和项目文件时，项目团队应当鼓励所有相关相关方参与。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27521">
+                            <span>28、</span>
+                            <em>[单选]</em>
+                            应该使用下列哪一种定量方法来制定项目预算?<br/>What quantitative approach should be used in developing a project budget?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：帕累托图<br/> Pareto diagrams                                    </li><li>
+                                        <input type="radio" checked> B：参数估算<br/>Parametric judgment estimating                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：专家判断<br/>Expert judgment estimation                                    </li><li>
+                                                                                    <input type="radio" disabled> D：净值管理 <br/>Earned value management                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：定量方法，A是质量管理的工具，排除。D是控制进度的工具，排除；B、C是估算成本的工具，但C是定性分析，排除。因此选B。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27535">
+                            <span>42、</span>
+                            <em>[单选]</em>
+                            在为一个价值 1500 万美元的项目招标过程中，采购经理发现了两个潜在的公司符合招标书的工作，A 公司费用较高，但比 B 公司拥有更多的专业知识。然而，B 公司符合项目预算，但 A 公司不符合。采购经理正处于下列哪一个过程？<br/>During the bidding process for a US$1.5 million project, the procurement manager discover that there are two potential companies that could be hired to accomplish the statement of work. Company A is more expensive and has more expertise than company B. However, company B has the project’s budget, but company A dose not. In which of the following processes is the procurement manager?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：召开投标人会议<br/> Conduct Bidder Conferences                                    </li><li>
+                                                                                    <input type="radio" disabled> B：规划采购管理<br/>Plan Procurement Management                                    </li><li>
+                                        <input type="radio" checked> C：实施采购<br/>Conduct Procurements                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：管理采购<br/>Administer Procurements                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：见 12.2/实施采购。实施采购时获取卖方应答、选择卖方并授予合同的过程。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27540">
+                            <span>47、</span>
+                            <em>[单选]</em>
+                            一项目经理被他的项目的各种问题折磨得狼狈不堪。他想找出问题的根源，以决定把注意力放在哪儿。该项目经理最应该使用下列哪项工具？<br/>A project manager has been overwhelmed with problems on his project. He would like to
+identify the root cause of the problems in order to determine where to focus his attention. Which
+of the following tools would be BEST for the project manager to use?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：帕雷托图<br/>Pareto chart                                    </li><li>
+                                                                                    <input type="radio" disabled> B：冲突解决技巧<br/>Conflict resolution techniques                                    </li><li>
+                                        <input type="radio" checked> C：鱼骨图<br/>Fishbone diagram                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：趋势分析<br/>Trend analysis                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：帕雷托图（选项 A）能帮助项目经理决定着眼的问题，但是不能找出问题的根源。虽然项目遇到了麻烦，但是也用不着冲突解决技巧（选项 B），因为实际上问题还没确认呢。趋势分析（选项 D）不解决根源，它更多的是用来预测未来。正确参考答案是 C。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27541">
+                            <span>48、</span>
+                            <em>[单选]</em>
+                            在下表中，哪个项目最有可能提前完成？<br/>In the following table, which project is most likely to finish ahead of schedule?<br/><img src="/ueditor_file/2019/2019-05/201905161818552228.png" title="201905161818552228.png" alt="图片2.png"/>                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：项目 A<br/>Project A                                    </li><li>
+                                                                                    <input type="radio" disabled> B：项目 B <br/>Project B                                    </li><li>
+                                        <input type="radio" checked> C：项目 C<br/>Project C                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：三个项目将同时完成<br/>All three the projects will be completed at the same time.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：A: &nbsp;SV=800 -1000 =-200；SPI=800/1000=0.8B: &nbsp;SV=1100-1000= 100；SPI=1100/1000=1.1C: &nbsp;SV=1200-1000= 200；SPI=1200/1000=1.2                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27552">
+                            <span>59、</span>
+                            <em>[单选]</em>
+                            项目团队成员识别项目质量需求，并记录项目应该如何遵守这些需求。他们应该使用哪一项工具和技术？<br/>The project team members identify project quality requirements and document how the project will demonstrate compliance. Which tools and techniques should they use?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：流程图，控制图和因果图<br/>Flowchart, control chart, and cause and effect diagrams                                    </li><li>
+                                                                                    <input type="radio" disabled> B：流程图，成本效益分析和趋势图<br/>Flowchart, cost-benefit analysis, and run charts                                    </li><li>
+                                        <input type="radio" checked> C：流程图，成本效益分析和思维导图<br/>Flowchart, cost-benefit analysis，and mind-mapping                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：流程图，控制图和散点图<br/>Flowchart, control chart, and scatter diagrams.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：规划质量工具包括：专家判断、数据收集、数据分析、决策、数据表现、测试与检查的规划、会议                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27554">
+                            <span>61、</span>
+                            <em>[单选]</em>
+                            公司管理层正在削减预算，因此必须做出如何削减某个关键正在进行的项目预算。项目经理首先应该怎么做？<br/>Budgets are being reduced by company management; there how to reduce the budget of a critical, ongoing project. The project manager should do which of the following first?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：提交能够减少成本的更新进度计划，并减少最终可交付<br/>Submit an updated schedule that reduces cost, and reduce final deliberates                                    </li><li>
+                                                                                    <input type="radio" disabled> B：解散某些分配的资源并延长项目时间线<br/>Dismiss some of the assigned resources and lengthen                                    </li><li>
+                                                                                    <input type="radio" disabled> C：减少管理储备以保持项目进行<br/>Eliminate the management reserve to keep the project.                                    </li><li>
+                                        <input type="radio" checked> D：使用敏感性分析评估不同风险<br/>Use a sensitivity analysis to evaluate the various risks.                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：消减预算为一项风险，所以需先评估不同消减预算方法所导致的风险后果，再决定采用哪种方法给项目带来的风险更小。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27557">
+                            <span>64、</span>
+                            <em>[单选]</em>
+                            你们在为美国能源部做一个项目，采用挣值分析作为绩效报告技术。现在项目已经完成了 20%，挣值分析的结果显示 CPI 为 0.67，SPI 0 .87。在这种情况下，你应该：<br/>Your project for the U.S. Department of Energy is using earned value analysis as a performance reporting technique. Your project is 201% complete. Results from a recent earned value analysis indicate that the CPI is 0 .67 and the SPI is 0.87. In this situation, you should                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：实施额外的资源计划，增加资源并用比预计更多的时间来完成预算的工作量<br/>Perform additional resource planning, add resources, and use overtime as needed to accomplish the same amount of budgeted work                                    </li><li>
+                                                                                    <input type="radio" disabled> B：重新设置进度基线，再进行蒙特卡罗分析<br/>Re-baseline the schedule, then use Monte Carlo analysis                                    </li><li>
+                                                                                    <input type="radio" disabled> C：实施一项风险应对审核来帮助监督风险<br/>Conduct a risk response audit to help control risk                                    </li><li>
+                                        <input type="radio" checked> D：重新识别风险，实施定性风险分析和实施定量风险分析<br/>Update to Identify Risks, Perform Qualitative Analysis and Perform Quantitative Analysis                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：CPI=0.67，SPI=0.87，说明此时，项目完成了 20%时，项目费用超支，项目进度落后，这个偏差分析结果说明项目存在对项目目标完成造成威胁的潜在风险存在，应该重新检测风险因素并对项目实施定性和定量风险分析。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27560">
+                            <span>67、</span>
+                            <em>[单选]</em>
+                            识别风险之后，项目团队对项目结果的影响意见不一致，项目经理首先应该怎么做?<br/>After identifying the risks, the project team does not agree about the impact to the project outcome. What should the project manager do first?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：定量风险分析<br/>Quantitative risk analysis                                    </li><li>
+                                                                                    <input type="radio" disabled> B：SWOT 分析<br/>SWTO analysis                                    </li><li>
+                                                                                    <input type="radio" disabled> C：头脑风暴<br/>Brainstorming                                    </li><li>
+                                        <input type="radio" checked> D：定性风险分析<br/>Qualitative risk analysis                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：11.3/实施定性风险分析。项目团队的风险处理方式会导致风险评估中的偏颇，则应该注意对偏颇进行分析与纠正。BC是识别风险的工具，题目是识别风险后，所以BC是不正确的                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27566">
+                            <span>73、</span>
+                            <em>[单选]</em>
+                            以下是为项目计算的：挣值=200，000美元计划价值=300,000美元实际成本=210,000美元项目的状态是什么？<br/>The following is calculated for the project.
+Earned value=us$200,000
+Planned value=us$300,000
+Actual cost=us$210,000
+What is the status of the project?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：进度落后，超过预算<br/>Behind schedule and over budget                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：提前进度，超出预算<br/>Ahead of schedule and over budget                                    </li><li>
+                                                                                    <input type="radio" disabled> C：进度落后，但不超过预算<br/>Behind schedule and under budget                                    </li><li>
+                                                                                    <input type="radio" disabled> D：按计划进行，但超出预算<br/>On schedule and over budget                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：挣值管理(EVM)。CV=EV-AC, SV=EV-PV；SV＝200000-300000=-100000；CV=200000-210000=-10000；由于SV和CV都小于0，所以项目状态为进度落后且超过预算。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27569">
+                            <span>76、</span>
+                            <em>[单选]</em>
+                            项目团队成员认为能够独立工作，并认为项目经理信任他们能在不严密管理团队的情况下完成任务。项目经理证明的是哪一种管理方式？<br/>Project team members think they can do work independently and believe that the project manager trusts them to deliver their tasks without managing the team closely. Which management style does the project manager demonstrate?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：归属需求<br/>Need for Affiliation                                    </li><li>
+                                                                                    <input type="radio" disabled> B：X理论<br/> Theory X                                    </li><li>
+                                        <input type="radio" checked> C：Y理论<br/>Theory Y                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：权力需求<br/>Need for Power                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：所属过程组：执行过程组。所属知识领域：项目资源管理。解析：七大激励理论之麦格雷戈的X-Y理论。X—Y理论（Theory X-Theory Y）主要是对人性的根本性理解。一个是性本恶——X理论，一个是性本善——Y理论。因此选C。X理论：（1）员工天生不喜欢工作，只要可能，就会逃避工作。（2）由于员工不喜欢工作，因此必须对他们采取强制的措施或惩罚的办法，迫使他们去实现组织的目标。（3）员工只要有可能就会逃避责任，安于现状。（4）大多数员工喜欢安逸，没有雄心壮志。Y理论：（1）员工视工作如休息、娱乐一般自然。（2）如果员工对某项工作做出承诺，他们会进行自我指导和自我控制，以完成任务。（3）一般而言，每个人不仅能够承担责任，而且会主动寻求承担责任。（4）绝大多数人都具备做出正确决策的能力，而不仅仅管理者具备这一能力。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27579">
+                            <span>86、</span>
+                            <em>[单选]</em>
+                            如果项目因某些活动时间限制而无法如期完工，客户对这些活动可做出何种推测？<br/>If the project cannot be completed as scheduled due to certain activity time limits, what assumptions can the customer make about these activities?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：开始时间不切实际<br/>Start time impractical                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：资源不足<br/>Insufficient resources                                    </li><li>
+                                                                                    <input type="radio" disabled> C：最晚的开始时间， 晚于最早的结束时间<br/>The latest start time, later than the earliest end time                                    </li><li>
+                                                                                    <input type="radio" disabled> D：他们存在浮动时间<br/>They have floating time                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：C、D 选项表达的意思一致，但浮动时间与工期延误间无必然联系，题干强调时间限制导致完工延期，应与计划有关。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27584">
+                            <span>91、</span>
+                            <em>[单选]</em>
+                            在质量控制期间，项目经理发现超出产品A的控制限值结果比质量测量指标中规定的频率高.项目经理决定启动质量审计. 谁应该执行质量审计？<br/>During quality control ，the project manager discover results that exceed the control limits for product A more often than stated in the quality metrics. The project manager decider to initiate a quality audit. Who should perform the audit？                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：公司或外部审计员<br/>Company or external auditors                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：负责产品A 的团队成员<br/>The team member responsible for product                                    </li><li>
+                                                                                    <input type="radio" disabled> C：其他团队成员<br/>Other team members                                    </li><li>
+                                                                                    <input type="radio" disabled> D：项目经理<br/>The project manager                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：PMBOK第6版 中8.2.2.5审计，质量审计通常由项目外部的团队开展，如组织内部审计部门、项目管理办公室 (PMO) 或组织外部 的审计师。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27586">
+                            <span>93、</span>
+                            <em>[单选]</em>
+                            你刚刚收到客户对项目的正式确认，你下一步应该做的是<br/>You have just received formal acceptance of the project from your customer. Your next step should be to                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：把接受到的确认文件分发给其他的项目相关方<br/> Distribute the acceptance documentation to other stakeholders as appropriate                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：把接受到的确认文件归入项目档案<br/>File the acceptance documentation in the project archives                                    </li><li>
+                                                                                    <input type="radio" disabled> C：同员工一起整理在这个项目中获取的经验和教训<br/>Document lessons learned with your staff                                    </li><li>
+                                                                                    <input type="radio" disabled> D：进行项目审核<br/>Conduct a project audit                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-5.5.3.1 确认范围-输出-1.验收的可交付成 果：符合验收标准的可交付成果应该由客户或发起人正式签字批准。应该从客户或发起人那里获得正式文件，证明相关方对项目可交付成果的正式验收。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27593">
+                            <span>100、</span>
+                            <em>[单选]</em>
+                            结束项目阶段，需要执行信息编制，作为项目的历史纪录。文件评估了项目的整体成功性，包括项目的优势、劣势、组织以及用于获得结果的技术。这个信息收集过程称作什么?<br/>At the conclusion of a project, there is a compilation of information that serves as the memory and history of the project. That document evaluates the overall success of the project including its strengths and weakness, organization and techniques used to get results.
+What is the collection of information called?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：项目相关方的反馈<br/>Stakeholder feed back                                    </li><li>
+                                                                                    <input type="radio" disabled> B：项目实施后的审计<br/>Post-implementation audit                                    </li><li>
+                                        <input type="radio" checked> C：经验教训<br/> Lesson learned                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：最终项目报告<br/>Final project report                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：组织过程资产更新--把历史信息和经验教训信息存入经验教训知识库，供未来项目或阶段使用。可包括问题与风险的信息，以及适用于未来项目的有效技术的信息。每一个阶段的输出是下一阶段的输入。项目收尾阶段更新组织过程资产，其中包含经验教训。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27594">
+                            <span>101、</span>
+                            <em>[单选]</em>
+                            项目经理计划为一个建设施工项目采购混凝土。所有供应商的材料质量都一样。只有价格差别。项目经理应向供应商请求哪种应对类型？<br/>The project manager plans to purchase concrete for a building construction project. The materials is consistent among all vendors, leaving price as the major difference.
+Which type of vendor response should the project manager request?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：信息请求<br/>Request for information                                    </li><li>
+                                                                                    <input type="radio" disabled> B：建议邀请书<br/>Request for proposal                                    </li><li>
+                                        <input type="radio" checked> C：报价邀请书<br/>Request for quotation                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：工作说明书<br/>Statement of work                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：12.1.3.5，供方选择标准，质量相同仅价格不同，则只需获取各供应商报价即可作为供方选择标准。所属过程组：规划过程组。所属知识领域：项目采购管理。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27599">
+                            <span>106、</span>
+                            <em>[单选]</em>
+                            下列哪一项技术使用了基于“为什么、为什么”以及“如何、如何”图表的信息？<br/>Which technique uses information based on “why-why” and “how-how” diagrams?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：失效模式与影响分析（FMEA）<br/>Failure Mode Effective Analysis (FMEA)                                    </li><li>
+                                                                                    <input type="radio" disabled> B：纠正和预防措施（CAPA）<br/>Corrective and Preventive Actions(CAPA)                                    </li><li>
+                                        <input type="radio" checked> C：根本原因分析<br/>Root cause analysis                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：帕累托图<br/>Pareto diagram                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：因果图，又称“鱼骨图”、“why-why分析图”和“石川图”，将问题陈述的原因分 解为离散的分支，有助于识别问题的主要原因或根本原因。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27601">
+                            <span>108、</span>
+                            <em>[单选]</em>
+                            项目执行过程中，一团队成员告诉项目经理，根据她的研究，项目不能满足所设定的质量标准。于是项目经理和相关各方开会分析当前情况。项目经理正处于质量管理的哪个过程：<br/>
+During project executing a project team member informs the project manager that based on
+her observations, the project cannot meet the quality standards set for it. The project manager
+meets with all parties concerned to analyze the situation. Which part of the quality management
+process is the project manager involved in:                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：管理质量<br/>Manage Quality                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：质量分析<br/>Quality analysis                                    </li><li>
+                                                                                    <input type="radio" disabled> C：控制质量<br/>Quality Control                                    </li><li>
+                                                                                    <input type="radio" disabled> D：规划质量管理<br/> Plan Quality Management                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：8.2 管理质量本过程的主要作用是，提高实现质量目标的可能性，以及识别无效过程和导致质量低劣的原因。 管理质量使用控制质量过程的数据和结果向相关方展示项目的总体质量状态。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27604">
+                            <span>111、</span>
+                            <em>[单选]</em>
+                            项目进展一半时，项目经理发现在过去几个月中挣值报告有错误，项目经理应该优先考虑的是什么？<br/>Half -way through a project, a project manager discovered the earned value the past couple of months have been erroneous. What should be the project manager’s priority?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：不做任何变更，但是计划与发起人讨论。<br/>Make no changes but plan to discuss with the sponsor.                                    </li><li>
+                                                                                    <input type="radio" disabled> B：与项目相关方讨论未来要采取的行动。<br/>Discuss a future course of action with stakeholders.                                    </li><li>
+                                        <input type="radio" checked> C：为错误承担责任并且迅速确认纠正措施。<br/>Take ownership for the error and identify corrections promptly.                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：改变进度和计划以保持与挣值报告相同。<br/>Change the schedule and plan to match the earned value reports.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：对客户和公众的责任--资质、经验和职业服务的履行--实事求是，在广告宣传、公开陈述以及准备成本估算、服务和结果预测时，向公众提供准确、真实陈述的责任 ，是否做变更决定需要经过评估，与项目团队讨论是否需要采取变更措施。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27611">
+                            <span>118、</span>
+                            <em>[单选]</em>
+                            项目X已完成60%，落后于进度且超出预算。由于其他更高优先级的项目，项目发起人已经撤出资金，而且部门经理已经将所有团队成员分配给项目Y.项目经理应该怎么做？<br/>Project X is 60% completed, behind schedule and over budget. The sponsor has withdrawn funding due other higher priority projects and the department manager has reassigned all team members to Project Y. What should the project manager do?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：修订项目管理计划，把变化反映在范围中<br/>Revise the project management plan to reflect the change in scope                                    </li><li>
+                                                                                    <input type="radio" disabled> B：为项目Y召开一次会议<br/>Meeting for Project Y                                    </li><li>
+                                        <input type="radio" checked> C：记录并存档项目X的经验教训<br/>Document and archive lessons learned on Project X                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：为项目X计算EAC和ETC<br/>Calculate the EAC and ETC for the Project X                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：4.7 终止时需要进行必要的收尾。进行结束项目或阶段过程的输出其中一项为组织过程资产的更新，即选项C选项B太宽泛选项D属于监控过程组                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27618">
+                            <span>125、</span>
+                            <em>[单选]</em>
+                            在弱矩阵和强矩阵组织结构中，可能引发冲突的基本条件是什么<br/>n the weak and strong matrix organizational structures, the primary condition leading to conflict is                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：沟通障碍<br/> Communication barriers                                    </li><li>
+                                                                                    <input type="radio" disabled> B：利益冲突<br/>Conflicting interests                                    </li><li>
+                                                                                    <input type="radio" disabled> C：缺乏共识<br/> Need for consensus                                    </li><li>
+                                        <input type="radio" checked> D：权限不明确<br/>Ambiguous jurisdictions                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-2.4.4.1组织结构类型-表2-1组织结构对项目的影响。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27622">
+                            <span>129、</span>
+                            <em>[单选]</em>
+                            即使项目成功进展，项目经理依然承受来自发起人和客户多个新功能请求的压力。管理流程已经定义并遵循。项目经理提醒变更控制委员会太多变更可能造成下列哪一项问题？<br/>Despite the project is on track, the project manager is under the pressure of new function requirements from the sponsor and customer. The management process has been defined and followed. The project manager alerts the change control board that too many changes can cause which of the following issue?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：范围蔓延<br/>scope creep                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：镀金<br/>gold plating                                    </li><li>
+                                                                                    <input type="radio" disabled> C：进度压缩<br/>schedule compression                                    </li><li>
+                                                                                    <input type="radio" disabled> D：质量成本<br/>cost of quality                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：所属过程组：监控过程组。所属知识领域：项目范围管理。解析：未经良好控制的变更将导致范围蔓延，符合题意，故选A。B选项镀金来自项目团队内部自行增加的范围，而题目说明是来自发起人和客户的新功能请求，不符合。C进度压缩是控制进度的技术，与题目完全无关。D选项是规划质量管理的技术，也与本题无关。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27624">
+                            <span>131、</span>
+                            <em>[单选]</em>
+                            在获得项目资源过程中，当无法快速定义一个精确的工作说明书时，下列哪一种合同类型更适用？<br/>During the procurement of resources for a project, which of the following contract types is suitable when a precise statement of work cannot be quickly defined?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：成本加奖励合同<br/> cost-plus-award-fee                                    </li><li>
+                                                                                    <input type="radio" disabled> B：固定总价合同<br/>firm-fixed-price                                    </li><li>
+                                                                                    <input type="radio" disabled> C：成本加激励费用<br/>cost-plus-incentive                                    </li><li>
+                                        <input type="radio" checked> D：工料合同<br/>time and material                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：所属知识领域：项目采购管理。所属过程组：规划过程组。解析：工料合同常用来在项目范围无法快速定义，范围不精确情况下获得外部资源，本题题干指出在获得项目资源过程时选择合同类型，因此工料合同符合题意。考点：合同类型选择-工料合同。出处：PMBOK第6版 中 12.1.1.6。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27626">
+                            <span>133、</span>
+                            <em>[单选]</em>
+                            项目经理负责一个系统集成项目。执行中管理质量需要哪些文件？<br/>The project manager is responsible for a system integration project. Which documents are required to manage quality on the project?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：质量测试指标，风险报告和项目管理计划<br/>Quality metrics, risk report, project management plan                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：项目管理计划，经验教训文件和范围说明书<br/>Project management plan, lessons learned, scope statement                                    </li><li>
+                                                                                    <input type="radio" disabled> C：成本绩效基线，项目管理计划和进度绩效指数<br/>Cost performance baseline, variance analysis, risk register                                    </li><li>
+                                                                                    <input type="radio" disabled> D：项目管理计划，偏差分析和风险登记薄<br/>Project management plan, variance analysis, risk register                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：管理质量的输入。8.2.1.2 项目文件质量测量指标                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27628">
+                            <span>135、</span>
+                            <em>[单选]</em>
+                            WBS及WBS词典已经完成，项目团队开始识别风险。发起人找到了项目经理，要求制定一个100,000美元的责任分配矩阵。项目的在三个国家进行，使用人员14人。项目预计风险很小，而且项目经理以前做了很多类似的项目。接下来项目经理应该所什么？ <br/>The WBS and WBS dictionary are completed. The project team has begun working on identifying risks. The sponsor contacts the project manager, requesting that the U.S. $l00，000 responsibility assignment matrix be issued. The project has a budget of and is taking place in three countries using 14 human resources. There is little risk expected for the project and the project manager has managed many projects similar to this one. What is the next thing to do?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：理解类似项目发起人的经验教训 <br/>Understand the experience of the sponsor on similar projects.                                    </li><li>
+                                        <input type="radio" checked> B：创造活动清单 <br/>Create an activity list                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：确保项目范围得到了定义<br/>Make sure the project scope is defined.                                    </li><li>
+                                                                                    <input type="radio" disabled> D：完成风险管理，制定责任分配矩阵。<br/>Complete risk management and issue the responsibility assignment matrix.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：WBS及WBS词典已经完成，说明5.4创建WBS过程已经完成。接下来要继续将工作包分解为活动。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27630">
+                            <span>137、</span>
+                            <em>[单选]</em>
+                            控制图有助于项目经理：<br/>A control chart helps the project manager:                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：着眼于改进质量最重要的问题上<br/>focus on the most critical issues to improve quality.                                    </li><li>
+                                                                                    <input type="radio" disabled> B：着眼于刺激思考<br/>focus on stimulating thinking.                                    </li><li>
+                                                                                    <input type="radio" disabled> C：探索理想的结果<br/>explore a desired future outcome.                                    </li><li>
+                                        <input type="radio" checked> D：确定某流程是否正常运转<br/> determine if a process is functioning within set limits.                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：选项 A 与帕雷托图有关，选项B 和 C 与鱼骨图有关。只有选项 D 与控制图有关。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27637">
+                            <span>144、</span>
+                            <em>[单选]</em>
+                            项目群经理在实施项目审计时，发现问题日志中各项均为项目经理所有，该情况可否接受？<br/>Project Manager in the implementation of the project audit, found that the problem log are all project managers, will it be acceptable?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：不可接受，项目经理不得作为问题及其解决方案的所有者<br/>Unacceptable, the project manager must not be the owner of the problem and its solution                                    </li><li>
+                                                                                    <input type="radio" disabled> B：可接受，根据要求，所有问题均有指定的所有者<br/>Acceptable, as required, all problems are assigned to the owner                                    </li><li>
+                                                                                    <input type="radio" disabled> C：可接受，项目经理必须是所有问题及其解决方案的所有者<br/>Acceptable, the project manager must be the owner of all problems and their solutions                                    </li><li>
+                                        <input type="radio" checked> D：不可接受，项目团队必须是所有问题及其解决方案的负责人的所有者<br/>Unacceptable, the project team must be the owner of all issues and their solutions                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：9.5.1.2 问题日志，在管理项目团队过程中，总会出现各种问题。可用问题日志记录由谁负责在目标日期内解决特定问题，并监督解决情况。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27642">
+                            <span>149、</span>
+                            <em>[单选]</em>
+                            项目要求为关键路径上多个任务的制定资源。整个项目工期的资源是充足的，但是在某个特定月份不能始终充足。项目经理应应用哪种技术在风险最低的情况下延迟非关键任务？<br/>Project requirements are resources for the development of multiple tasks on a critical path. The resources for the duration of the project are sufficient, but not always sufficient in a particular month.                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：资源平衡<br/>Resource Balance                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：赶工<br/> Clock                                    </li><li>
+                                                                                    <input type="radio" disabled> C：制定受资源制约的进度表<br/>Develop a resource-constrained schedule                                    </li><li>
+                                                                                    <input type="radio" disabled> D：快速跟进<br/>Quick follow up                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：关键字分析-整个项目工期中资源充足，但某个特定月份不充足，只需资源在关键路径/非关键路径之间的平衡                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27647">
+                            <span>154、</span>
+                            <em>[单选]</em>
+                            项目经理接管一个处于执行阶段的项目，客户无法按照要求的详细程度来定义项目目标，项目团队成员已经开始抱怨，因为需求的不断变化导致无法进行工作估算和进度编制，项目经理应该怎么做？<br/>The project manager takes over a project that is in the execution phase, the customer is unable to define the project objectives according to the level of detail required, and the project team members have begun to complain because the changing requirements lead to the inability to work out the estimate and schedule, what should the project manager do?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：将团队成员的抱怨告诉客户，并要求更多的详细要求<br/>Inform the customer of team members ' complaints and ask for more detailed requirements                                    </li><li>
+                                                                                    <input type="radio" disabled> B：告诉项目团队成员客户无法按照要求的节奏提供需求<br/>Tell the project team members that the customer is unable to deliver requirements at the required pace                                    </li><li>
+                                                                                    <input type="radio" disabled> C：当有更详细信息时，更新高层次 WBS<br/>Update high-level WBS when more details are available                                    </li><li>
+                                        <input type="radio" checked> D：让项目团队关注当前任务<br/>Let the project team focus on the current task                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-5.4.3.1范围基准&6.2.2.3滚动式规划，在当前无法分解的可交付成果和组件，通过滚动式规划，在达成一致意见后进行。在此之前，项目团队应关注当前已明确已量化可执行的任务。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27657">
+                            <span>164、</span>
+                            <em>[单选]</em>
+                            项目团队主管通知项目经理一个阶段已经完成，项目经理下一步应该怎么做？<br/>The project team leader informs the project manager that a phase has been completed and what should the project manager do next?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：更新项目计划，并继续下一个阶段<br/>Update the project plan and continue to the next stage                                    </li><li>
+                                                                                    <input type="radio" disabled> B：向客户提供阶段可交付成果<br/>Deliver stage deliverables to customers                                    </li><li>
+                                                                                    <input type="radio" disabled> C：接受可交付成果<br/>Accept Deliverable                                    </li><li>
+                                        <input type="radio" checked> D：验证可交付成果<br/>Validate Deliverables                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-5.5.3.1验收的可交付成果，符合验收标准的可交付成果应该由客户或发起人正式签字批准。应该从客户或发起人那里获 得正式文件，证明相关方对项目可交付成果的正式验收。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27661">
+                            <span>168、</span>
+                            <em>[单选]</em>
+                            一个新项目需要一名关键项目人员的支持，该人员是有多个项目共用的，项目经理联系人力主管，希望获得该人员的参与，但却收到了负面答复。项目经理下一步该怎么做？<br/>A new project requires the support of a critical project resource that is shared among multiple project. The project manager approaches the resource’s supervisor to obtain commitment but receives a negative response. What should the project manager do next?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                        <input type="radio" checked> A：与其他项目经理协商，提前让出该项目人员。<br/>Negative with other project managers to release the project resource.                                                                                </li><li>
+                                                                                    <input type="radio" disabled> B：聘用一名拥有类似技能集的外部承包商来支持实施。<br/>Hire a external contractor with a similar skill to support implementation.                                    </li><li>
+                                                                                    <input type="radio" disabled> C：利用管理层的影响来获得这名项目人员的时间。<br/>Use management influence to attain the project resource’ time.                                    </li><li>
+                                                                                    <input type="radio" disabled> D：在项目风险登记册中记录该风险，并制定一份风险减轻计划。<br/>Record the risks in the project risk register, and develop a risk mitigation plan.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">A</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：9.4.2.4谈判与执行组织中的其他项目管理团队谈判。合理分配稀缺或特殊人力资源                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27664">
+                            <span>171、</span>
+                            <em>[单选]</em>
+                            什么时候应该寻求项目可接受成果的正式验收？<br/>When should be the right time to launch a formal acceptance of a project deliverables?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：在交付成果安装在客户系统之前<br/>Before the deliverables have been instated in the client systems                                    </li><li>
+                                                                                    <input type="radio" disabled> B：在可交付成果安装在客户系统之后<br/>after project deliverable have been instated in the client system.                                    </li><li>
+                                        <input type="radio" checked> C：在项目经理证明所有客户需求均已满足之后<br/>after the project manager demonstrates that all client specifications have been                                                                                </li><li>
+                                                                                    <input type="radio" disabled> D：在项目经理汇报所有客户需求均已满足之后<br/> after the project manager reports that all client specifications have been completed                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">C</span></span>
+                            <span>你的答案：<span class="answer_wrong">B</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-5.5.1.3核实的可交付成果，指已完成并被质量控制过程检查为正确的可交付成果，是确认范围的依据。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27665">
+                            <span>172、</span>
+                            <em>[单选]</em>
+                            项目经理接管一个执行阶段的项目，在对项目进度进行初步审查期间，项目经理注意到与特定关键路径活动有关的信息不完整，有些活动还存在风险。项目经理如何才能确定每项活动的责任？<br/>A project manager takes over a project in the execution phase,During an initial review of the progress, the project manager notices that information relevant to specific critical path activities is incomplete, and some activies are at risk.
+How could the project manager identify accountability for each activity?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：工作分解结构<br/>Work breakdown structure                                    </li><li>
+                                        <input type="radio" checked> B：责任分配矩阵<br/>Responsibility assignment                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：组织分解结构<br/>Organizational bre
+akdown structure                                    </li><li>
+                                                                                    <input type="radio" disabled> D：风险登记册<br/>Risk register                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：9.1.2.2，责任分配矩阵可以表示每项活动的职责，一种将项目组织分解结构与工作分解结构联系起来的结构，有助于确保项目工作范围的每个组成部分都被分配给了某个人或某个团队。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27666">
+                            <span>173、</span>
+                            <em>[单选]</em>
+                            下面哪一个选项最好的描述了属性样本以及变量样本？<br/>Which of the following statements best describes attribute sampling versus variable sampling?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：属性样本与预防有关，而变量样本与监督有关<br/>Attribute sampling is concerned with prevention, whereas variable sampling is concerned with inspection.                                    </li><li>
+                                        <input type="radio" checked> B：属性样本与一致性有关，而变量样本与一致性的程度有关<br/>Attribute sampling is concerned with conformance, whereas variable sampling is concerned with the degree of conformity.                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：属性样本与具体原因有关，而变量样本与任何原因有关<br/>Attribute sampling is concerned with conformance, whereas variable sampling is concerned with any causes.                                    </li><li>
+                                                                                    <input type="radio" disabled> D：两者是同一概念<br/>Both are the same concept.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：出处：PMBOK第6版 中 8.3 引言“8.3 控制质量-属性抽样（结果或为合格，或为不合格）变量抽样（在连续的量表上标明结果所处的位置，以此表明合格的程度）”                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27670">
+                            <span>177、</span>
+                            <em>[单选]</em>
+                            两个互不相关的低影响风险同时发生，使项目进度受到了危害。项目经理接下来应该怎么做？<br/>A project schedule is in jeopardy of slopping due to two unrelated low impacts occurred at the same time. What should the project manager do next?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：赶工<br/>crash the schedule                                    </li><li>
+                                        <input type="radio" checked> B：创建一份项目变更请求<br/> create a project change request                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：上报给项目发起人<br/>escalate to the sponsor                                    </li><li>
+                                                                                    <input type="radio" disabled> D：查阅风险管理计划<br/>consult the risk management plan                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">D</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：两个互不相关的低影响同时作用的结果危害了项目进度，如果这种情况提前就识别的话，就有相应的应对措施，这些是应该记录在风险登记册中的，风险管理计划不涉及具体风险及其应对措施措施，所以查阅风险管理计划无济于事，如果这种情况事先没有识别的话，查阅风险管理计划也不能帮助识别，提干描述的这种情况，是在做风险监督，监督发现的问题应该提出变更请求，在变更请求中提出推荐的纠正措施和预防措施，推荐的纠正措施包括应急计划和权变措施针对以往未曾识别或被动接受的、目前正在发生的风险而采取的、未经事先计划的应对措施.                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27673">
+                            <span>180、</span>
+                            <em>[单选]</em>
+                            项目 A 的交付取决于项目 B，项目 A 的项目经理发现项目 B 提交了一项变更请求，这会使项目B 推迟两个月。项目 A 的项目经理下一步该怎么做？<br/>Project A’s delivery is dependent upon project B, project A’s project manager 
+discovers that a change request is submitted in project B ,which will delay project B’s delivery by two months. What should project A’s project manager do next?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：与项目 B 的项目经理协商拒绝项目 B 的变更请求。<br/> Negotiate with project B’s project manager to reject the change request in project B.                                    </li><li>
+                                        <input type="radio" checked> B：审查项目 A 的风险应对计划，获得风险减轻措施。<br/>Review project A’s risk response plan for a risk mitigation action                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：创建一项变更请求，反映项目 A 后续的进度偏移。<br/>Create a change request to reflect the subsequent schedule slippage of project A                                    </li><li>
+                                                                                    <input type="radio" disabled> D：要求项目 A 的项目发起人干预<br/>Ask the sponsor of project A to intervene.                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">C</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：出处：11.7.1.21. 风险登记册包括已识别单个项目风险、风险责任人、商定的风险应对策略，以及具体的应对措施；2. 若登记册中无题干描述风险，则应修订风险登记册并提出变更请求。                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27675">
+                            <span>182、</span>
+                            <em>[单选]</em>
+                            询问团队成员各自工作活动的时间估算，以及为每项活动讨论日历日期协议包含在哪一项？<br/>What process include asking team members for a time estimate for their activities, agreement on a calendar date for each activity?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：制定进度计划<br/>Develop Schedule                                    </li><li>
+                                                                                    <input type="radio" disabled> B：控制进度<br/>Control Schedule                                    </li><li>
+                                                                                    <input type="radio" disabled> C：定义活动<br/>Definition activity                                    </li><li>
+                                        <input type="radio" checked> D：估算活动持续时间<br/>Estimating activity duration                                                                                </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">D</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：指南-6.4.1.2项目文件，资源日历                                                    </div>
+
+                    </div><div class="st_content_txt">
+                        <div class="st_content_txt_tm" id="27680">
+                            <span>187、</span>
+                            <em>[单选]</em>
+                            执行项目时，项目经理认识到其中一项任务的期限估计不足，下列哪项工具可以用来尽量减少影响？<br/>Which executing the project , a project manager realizes that a task duration was poorly estimate. Which of the following tools could be used to minimize the impact?                        </div>
+                        <div class="st_content_txt_xx">
+                            <ul>
+                                <li>
+                                                                                    <input type="radio" disabled> A：规划风险应对<br/>Planning Risk Responses                                    </li><li>
+                                        <input type="radio" checked> B：快速跟进<br/>Fast tracking                                                                                </li><li>
+                                                                                    <input type="radio" disabled> C：预测<br/>Forecasting                                    </li><li>
+                                                                                    <input type="radio" disabled> D：失效模式和影响分析<br/> failure mode and impact analysis                                    </li>                            </ul>
+                        </div>
+                        <div class="jxxq_answer">
+                            <span>正确答案：<span class="answer_right">B</span></span>
+                            <span>你的答案：<span class="answer_wrong">A</span></span>
+                        </div>
+                        <div class="jxxq_jx_txt">
+                            解析：此题说的是进度问题，快速跟进正确。                                                    </div>
+
+                    </div>            </div>        <!--单选结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--多选开始↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+                <!--多选结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--判断开始↓↓↓↓↓↓↓↓↓↓-->
+                <!--判断结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--填空开始↓↓↓↓↓↓↓↓↓↓-->
+                <!--填空结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+        <!--简答开始↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+                <!--简答结束↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+        <!--视频在此↓↓↓↓↓↓-->
+        <div class="video-box" style="display: none;">
+            <div class="kcbf_wrap_x_box_left_player_exam" id="j_player"></div>
+        </div>
+        <!--视频在此↑↑↑↑↑↑-->
+    </div>
+    <div class="st_content_right">
+        <div class="st_content_right_tit_jx">答题用时：159分钟
+            <br/>答题时间：2019-06-16 17:42:20        </div>
+        <div class="st_content_right_wrap">
+            <h5>答题卡</h5>
+            <div class="st_content_right_jindu">
+                    <h4><span></span><em>单选题</em></h4>
+                    <ol class="st_content_right_jindu_num">
+                        <a href="#27494">
+                                <li class="current">1</li>
+                            </a><a href="#27505">
+                                <li class="current">12</li>
+                            </a><a href="#27507">
+                                <li class="current">14</li>
+                            </a><a href="#27512">
+                                <li class="current">19</li>
+                            </a><a href="#27513">
+                                <li class="current">20</li>
+                            </a><a href="#27521">
+                                <li class="current">28</li>
+                            </a><a href="#27535">
+                                <li class="current">42</li>
+                            </a><a href="#27540">
+                                <li class="current">47</li>
+                            </a><a href="#27541">
+                                <li class="current">48</li>
+                            </a><a href="#27552">
+                                <li class="current">59</li>
+                            </a><a href="#27554">
+                                <li class="current">61</li>
+                            </a><a href="#27557">
+                                <li class="current">64</li>
+                            </a><a href="#27560">
+                                <li class="current">67</li>
+                            </a><a href="#27566">
+                                <li class="current">73</li>
+                            </a><a href="#27569">
+                                <li class="current">76</li>
+                            </a><a href="#27579">
+                                <li class="current">86</li>
+                            </a><a href="#27584">
+                                <li class="current">91</li>
+                            </a><a href="#27586">
+                                <li class="current">93</li>
+                            </a><a href="#27593">
+                                <li class="current">100</li>
+                            </a><a href="#27594">
+                                <li class="current">101</li>
+                            </a><a href="#27599">
+                                <li class="current">106</li>
+                            </a><a href="#27601">
+                                <li class="current">108</li>
+                            </a><a href="#27604">
+                                <li class="current">111</li>
+                            </a><a href="#27611">
+                                <li class="current">118</li>
+                            </a><a href="#27618">
+                                <li class="current">125</li>
+                            </a><a href="#27622">
+                                <li class="current">129</li>
+                            </a><a href="#27624">
+                                <li class="current">131</li>
+                            </a><a href="#27626">
+                                <li class="current">133</li>
+                            </a><a href="#27628">
+                                <li class="current">135</li>
+                            </a><a href="#27630">
+                                <li class="current">137</li>
+                            </a><a href="#27637">
+                                <li class="current">144</li>
+                            </a><a href="#27642">
+                                <li class="current">149</li>
+                            </a><a href="#27647">
+                                <li class="current">154</li>
+                            </a><a href="#27657">
+                                <li class="current">164</li>
+                            </a><a href="#27661">
+                                <li class="current">168</li>
+                            </a><a href="#27664">
+                                <li class="current">171</li>
+                            </a><a href="#27665">
+                                <li class="current">172</li>
+                            </a><a href="#27666">
+                                <li class="current">173</li>
+                            </a><a href="#27670">
+                                <li class="current">177</li>
+                            </a><a href="#27673">
+                                <li class="current">180</li>
+                            </a><a href="#27675">
+                                <li class="current">182</li>
+                            </a><a href="#27680">
+                                <li class="current">187</li>
+                            </a>                    </ol>
+                </div>        </div>
+        <div class="st_content_right_btn">
+            <a href="/Test/index/tid/188436.html"><input type="submit" value="返回列表" class="st_content_right_btn_red"></a>
+        </div>
+    </div>
+</div>
+
+<!--内容结束↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+
+<!--footer-->
+    <!--footer-->
+<div class="footer_warp">
+    <div class="footer">
+        <div class="footer_left">
+            <ul>
+                <li>咨询热线：400-0892-521</li>
+                <li>教务电话： 020-83514157</li>
+                <li>联系邮箱：ycjw@aura.cn </li>
+                <li>技术支持：185-1474-8683意见反馈</li>
+                <li>Copyright 2017 版权所有 光环国际</li>
+                <li>PMI, PMP and PMBOK are registered marks of the Project Management Institute</li>
+            </ul>
+        </div>
+            <div class="footer_right"><img src="https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913091652_58404_195x65.png" alt=""></div>
+    </div>
+</div>
+<!--<div style="width: 100%;height: 120px;"></div>-->
+
+<script type="text/javascript" src="/static/tools/layer/layer.js"></script>
+<script>
+    $(function () {
+        var winHeight = $(window).height();
+        var navHeight = $('.fmy_head_wrap').height();
+        var courseHeight = $('.stxq_mbx').height();
+        var conHeight = $('.stxq_banner').height();
+        var footHeight = $('.footer_warp').height();
+        var pad = 150;
+        $('.st_content_left').css('min-height', winHeight - navHeight - courseHeight - conHeight - footHeight - 150 + 'px');
+
+        //处理video
+        $('video').attr('controlslist', 'nodownload');
+        $('video').attr('poster', "https://img01.feimayun.com/wx/manage/defset/2018/2018-09/20180913090837_78838_288x152.jpg");
+        $('video').css('display', 'block');
+        $('video').css('margin', '0 auto');
+
+        //处理右击
+        $('body').attr('oncontextmenu', 'window.event.returnValue=false');
+
+        $('.typer').eq(0).addClass('current');
+        $('.stxq_banner ul li').click(function () {
+            $('.stxq_banner ul li').removeClass('current');
+            $(this).addClass('current');
+        });
+        $('.open1').click(function () {
+            $('.open1').toggleClass('close1');
+            $('.open2').toggleClass('close2');
+        })
+    });
+
+    //屏幕滚动右侧板块固定
+    window.onscroll = function () {
+        var sc = $(document);
+        var leftOf = $('.st_content').offset().left;
+        var mbxHeight = $('.stxq_mbx').height();
+        var topNum = mbxHeight + 279;
+        if (sc.scrollTop() >= topNum) {  //当滚动距离大于250px时执行下面的东西
+            $('.st_content_right').css({
+                'position': 'fixed',
+                'top': 0,
+                'left': leftOf + 880,
+                'z-index': '9999'
+            });
+        } else {//当滚动距离小于250的时候执行下面的内容，也就是让导航栏恢复原状
+            $('.st_content_right').css({
+                'position': 'static',
+            });
+        }
+    }
+
+    //播放解析视频
+    function playVideo(aliVid) {
+        if (!aliVid) {
+            layer.msg('缺少参数，请刷新后重试~', {icon: 0, time: 1500});
+            return false;
+        }
+
+        $.ajax({
+            url: "/Test/ajaxGetPlayAuth.html",
+            data: {aliVid: aliVid},
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    $('.video-box').css('display', 'block');
+
+                    var html = "<div id = 'J_prismPlayer' style='width: 100%;height: 100%;' class='prism-player'></div>";
+                    html += "<img class='J_prismPlayer_t' src='/static/home/images/video_x.png' onclick='closeVideo()'>";
+                    $('#j_player').empty().append(html);
+
+                    var configs = {
+                        id: "J_prismPlayer",
+                        //autoplay: true,
+                        vid: aliVid,
+                        playauth: data.data,
+                    };
+
+                    var playerObj = new Aliplayer(configs, function (player) {});
+                } else {
+                    layer.msg(data.msg, {icon: 2, time: 1500});
+                    return false;
+                }
+            }
+        });
+    }
+    //关闭视频
+    function closeVideo() {
+        $('.video-box').css('display', 'none');
+        $('#J_prismPlayer').empty();
+    }
+</script>
+</body>
+</html>
